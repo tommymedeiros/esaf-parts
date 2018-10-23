@@ -1,0 +1,471 @@
+*,
+*:after,
+*:before
+  +box-sizing(border-box)
+
+html
+  font-size: 62.5%
+  height: 100%
+
+body
+  background: $coluna-esquerda
+  color: $cinza-escuro
+  font-family: $ubuntu-r
+  margin: 0
+  min-height: 100%
+  padding: 0 0 $footer
+  position: relative
+  img
+    &.iconsmall
+      padding: 0
+  
+  &.pagelayout-course,
+  &.pagelayout-incourse
+    background: $coluna-esquerda, $coluna-direita
+    @media (max-width: 979px)
+      background: $coluna-esquerda-mobile
+  // Hack que evita o deslocamento do footer
+  &.lockscroll
+    #region-main
+      padding-bottom: $footer
+    #page-footer
+      position: fixed
+  &.path-login // Paginas de login e logout
+    padding: $barra 0 $footer 0
+    aside
+      display: none
+    // #notice .buttons input[type="submit"]
+    //   @extend %input-submit
+  &.path-login,
+  &.notloggedin
+    background: none
+  @media (min-width: 768px) and (max-width: 979px)
+    padding-top: 0
+
+// Evita que os elementos não ocupem todo o espaco da tela
+.container-fluid
+  margin:
+    left: 0
+    right: 0
+  max-width: 100%
+
+header[role="banner"]
+  // .navbar-fixed-top, .navbar-fixed-bottom
+  z-index: 2
+  #barra-brasil
+    #menu-icon
+      height: 31px // Altura da #barra-brasil
+      padding: 0
+    .list
+      z-index: 1
+  nav[role="navigation"]
+    box-shadow: $sombra-barra !important
+    min-height: 0 // Corrige o tamanho minimo na barra de acessibilidade
+    .ministerio
+      box-shadow: none !important
+    @media (max-width: 979px)
+      padding: 0
+  // Formata a 'aba' onde aparece o nome do aluno
+  .escola .nav-collapse ul.nav:not(.customMenu)
+    box-shadow: $sombra-extensa
+    a
+      color: $verde
+  @media (max-width: 979px)
+    margin: 0
+
+#page
+  padding: 0
+  #header-content
+    position: relative
+    [class*="pagelayout"]:not(.pagelayout-course):not(.pagelayout-incourse) &
+      min-height: 150px // Altura minima para abrigar o #logo-esaf
+
+// Area do nome da escola e icones de navegacao
+#page-header
+  background-color: White
+  min-height: $header
+  padding-top: 20px
+  h1
+    color: $verde
+    font:
+      family: $sansation-r
+      size: 3.2rem
+      weight: normal
+  .pagelayout-frontpage:not(.notloggedin) &
+    h1
+      +ellipsis(40%) // Temporario ate a implementacao do FitText (http://fittextjs.com/)
+  .notloggedin &
+    min-height: $header-home
+    padding-top: 20px
+    h1
+      +ellipsis(96%) // Temporario ate a implementacao do FitText (http://fittextjs.com/)
+      float: left
+      font-size: 5rem
+      padding-left: $grid / 3 // Temporario ate achar uma melhor solucao
+    .logininfo
+      font:
+        size: 1.1rem
+        weight: bold
+      text-transform: uppercase
+      a
+        border-left: $borda solid $verde
+        color: $verde
+        font-size: 1.9rem
+        margin-left: 10px
+        padding-left: 10px
+        text-transform: lowercase
+      span
+        font-size: 1.7rem
+
+// Menu com os links institucional, calendario, cursos...
+#menu-esaf
+  list-style: none
+  margin: 0 0 0 ($grid / 2) // Temporario ateh achar uma solucao melhor
+  li
+    display: inline-block
+    font-size: 1.2rem
+    text-transform: uppercase
+  ul
+    margin: 0
+    &.nav li
+      a
+        color: $cinza-claro
+        padding: 0 20px
+        &:before
+          background: url([[pix:theme|menu_icones_sprite]]) no-repeat transparent
+          +border-radius(2px)
+          content: ""
+          display: block
+          margin: 0 auto 5px
+          +size(24px)
+        &:hover
+          background-color: transparent
+      &:nth-child(1)
+        a
+          padding-left: 0
+          &:before
+            background-position: 0 0
+        &:hover a:before
+          background-position: 0 -24px
+      &:nth-child(2)
+        a:before
+          background-position: -24px 0
+        &:hover a:before
+          background-position: -24px -24px
+      &:nth-child(3)
+        a:before
+          background-position: -48px 0
+        &:hover a:before
+          background-position: -48px -24px
+      &:nth-child(4)
+        a:before
+          background-position: -72px 0
+        &:hover a:before
+          background-position: -72px -24px
+      &:nth-child(5)
+        a:before
+          background-position: -96px 0
+        &:hover a:before
+          background-position: -96px -24px
+      &:nth-child(6)
+        a:before
+          background-position: -120px 0
+        &:hover a:before
+          background-position: -120px -24px
+      &:not(:last-child) a
+        border-right: 1px solid lighten($cinza-claro, 20%)
+
+// Area superior de login, clone da existente em .block_login
+.clone-login
+  background-color: lighten(Gainsboro, 8%)
+  box-shadow: $sombra-interna-superior
+  display: none
+  min-height: 70px
+  position: relative
+  .loginform
+    @extend %loginform
+    // input[type="text"],
+    // input[type="password"]
+    //   @extend %input-text
+    input[type="text"]
+      margin-right: 30px
+    // input[type="submit"]
+    //   @extend %input-submit
+    input[type="checkbox"]
+      margin-right: 0
+    .primeiro-acesso
+      p
+        color: mix($cinza, $cinza-claro)
+        margin: 10px 0 0 36px
+        a
+          color: $verde
+          text-transform: uppercase
+    .rememberusername,
+    .recupera-senha
+      padding-left: 5px
+    .btn
+      margin-left: 0
+  .tooltip-primeiro-acesso
+    background-color: White
+    border: ($borda / 2) solid mix($cinza-claro, Gainsboro)
+    display: none
+    font-size: 1.3rem
+    left: 0
+    padding: 5px 10px
+    position: absolute
+    top: 40px
+    z-index: 2
+    a
+      color: $verde
+    span.tooltip-fechar
+      color: mix($cinza-claro, Gainsboro)
+      cursor: pointer
+      display: block
+      font-weight: bold
+      line-height: $borda * 2
+      position: absolute
+      right: 0
+      top: 0
+      width: $borda * 2
+    &:before
+      border:
+        color: mix($cinza-claro, Gainsboro) transparent // Gainsboro
+        style: solid
+        width: 0 $borda $borda
+      content: ""
+      // +filter(drop-shadow(2px 2px 0px rgba(0,0,0,.1)))
+      left: 15% // $borda * 2
+      // margin-left: - ($borda * 2)
+      position: absolute
+      top: - $borda - ($borda / 2)
+      z-index: 1
+  .tooltip-primeiro-acesso.aberto,
+  &.aberto
+    display: block
+
+// Logotipo de ESAF
+#logo-esaf
+  background:
+    color: $bege-escuro
+    image: url([[pix:theme|logo_esaf_coluna_home]])
+    position: center
+    repeat: no-repeat
+    size: 45%
+  bottom: 0
+  position: absolute
+  top: 0
+  z-index: 1
+  .pagelayout-frontpage:not(.notloggedin) &
+    background:
+      color: $bege-escuro
+      image:  url([[pix:theme|logo_esaf_coluna_home]]), url([[pix:theme|hachura_barra_esaf]])
+      position: center, 0 0
+      repeat: no-repeat, repeat-y
+      size: 55%, 100%
+    +no-gutter(3)
+
+// Area de conteudo principal
+#page-content
+  position: relative
+  // &:not(.notloggedin) &
+  //   background: $coluna-esquerda // Nao estah funcionando
+
+// Regiao principal de conteudo
+#region-main
+  margin-left: 0
+  #all-courses-search
+    margin: 10px $grid 0 0
+    position: absolute
+    right: 0
+    z-index: 1
+    #coursesearch
+      margin-top: 0
+      // input[type="text"]
+      //   @extend %input-text
+      // input[type="submit"]
+      //   @extend %input-submit
+  [role="main"]
+    padding: $grid / 2
+    position: relative
+    .pagelayout-incourse &
+      padding:
+        left: $grid + ($grid / 2)
+        right: $grid
+    .notloggedin &
+      padding: 0
+  .pagelayout-frontpage:not(.notloggedin) &
+    +no-gutter(9)
+#frontpage-mycourses-list,
+#frontpage-enclosedcourses-list,
+#frontpage-availablecourses-list
+  margin:
+    bottom: 10px
+    top: 10px
+  min-height: 120px
+  h2
+    font:
+      family: $ubuntu-r
+      weight: normal
+  h3
+    font:
+      family: $ubuntu-b
+      size: 1.8rem
+      weight: bold
+    line-height: 2.2rem
+    a
+      color: $cinza-claro
+  .nocourses
+    color: $cinza-claro
+    line-height: 15rem
+  // Cada miniatura do curso com seu nome
+  .coursebox
+    background-color: transparent
+    border: 0
+    float: left
+    min-height: 250px
+    min-width: $thumb
+    padding: 0
+    position: relative
+    width: $grid * 2.5
+    &,
+    *
+      max-width: $thumb
+    h3
+      margin: 10px 0 0
+      a
+        background: none
+        padding: 0
+    .overlay
+      display: block
+      position: absolute
+      +size(100% $thumb)
+      z-index: 1
+    .overlay,
+    .content
+      text-indent: -9999px
+    .content
+      > ul
+        display: none
+    .summary
+      background: url([[pix:theme|esaf_thumb_curso]]) no-repeat center
+      float: none
+      height: $thumb
+      margin: 0
+      width: 100%
+      .no-overflow
+        overflow: hidden
+        img
+          left: 0
+          position: absolute
+    .info
+      text-align: center
+    &:hover
+      background-color: transparent
+    &:not(.last-child)
+      margin-right: $grid * .5
+// #frontpage-enclosedcourses-list,
+#frontpage-mycourses-list
+  h2
+    color: $cinza-claro
+    font-size: 3.2rem
+    position: relative
+    &:before
+      content: url([[pix:theme|icone_meus_cursos_logado]])
+      display: block
+      left: -55px - 15px // 15px de gutter
+      position: absolute
+      +size(55px 36px)
+// #frontpage-enclosedcourses-list
+//   &.fechado
+//     min-height: 40px
+//     > *
+//       display: none
+#frontpage-enclosedcourses-list,
+#frontpage-availablecourses-list
+  h2
+    background-color: $bege
+    border-left: $borda solid $alaranjado
+    color: $cinza
+    font-size: 2rem
+    line-height: 4rem
+    padding-left: 30px
+
+#frontpage-availablecourses-list
+  position: relative
+  > .singleselect
+    position: absolute
+    right: $grid + ($grid / 5)
+    top: 15px
+    select
+      box-shadow: $sombra-input-submit
+
+// Termo de aceite
+[id*="termoaceite"] [role="main"]
+  .noticebox .termoaceite
+    color: $cinza
+    font-size: 3.2rem
+  > form
+    #fgroup_id_buttonar
+      background-color: transparent
+      border: 0
+  
+// Notificacoes de mensagens
+#newmessageoverlay
+  background-color: $verde
+  #newmessagetext
+    color: White
+    margin-bottom: 5px
+  #newmessagelinks
+    a
+      background-color: lighten($verde, 5%)
+      color: lighten($verde, 40%)
+      display: inline-block
+      font:
+        size: 1.1rem
+        weight: bold
+      padding: ($borda / 2) $borda
+      text-shadow: 1px 1px $verde
+      &:hover
+        background-color: lighten($verde, 6%)
+        color: White
+
+// Footer
+#page-footer
+  background: linear-gradient(to bottom, $marrom 0%, $marrom 30%, $marrom-escuro 30%, $marrom-escuro 100%)
+  border-top: 0
+  bottom: 0
+  margin-top: 0
+  padding: 35px 0 0
+  position: absolute
+  +size(100% $footer)
+  .redes-sociais
+    position: absolute
+    bottom: 50px
+    right: 165px
+    a
+      background:
+        image: url([[pix:theme|redes_sociais_icones_sprite]])
+        repeat: no-repeat
+      display: inline-block
+      float: left
+      +size(35px)
+      &.rss
+        background-position: 0 0
+      &.twitter
+        background-position: -35px 0
+      &.facebook
+        background-position: -70px 0
+      &:not(:last-child)
+        margin-right: 5px
+  .info-esaf
+    color: Gainsboro
+    font-size: 1.1rem
+    line-height: 1.4rem
+    text-align: left
+  .helplink,
+  .homelink,
+  .logininfo,
+  .sitelink
+    display: none
+
+// 737895954

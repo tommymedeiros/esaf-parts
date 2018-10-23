@@ -1,0 +1,187 @@
+#page-navbar
+  padding: 0 ($grid / 2)
+  .breadcrumb-nav
+    margin-bottom: 0
+    ul
+      background-color: transparent
+      padding: 0
+      li
+        +line-height(4)
+        a,
+        .arrow.sep
+          color: $verde
+      &.breadcrumb
+        // @media (max-width: 979px)
+        +ellipsis(100%)
+    @media (min-width: 768px) and (max-width: 979px)
+      margin-left: $grid * 4
+      width: $grid * 7
+  .breadcrumb-button
+    margin: 0
+    .pagelayout-course & .singlebutton
+      margin-left: $grid
+#page-header
+  &.cabecalho_padrao
+    .fittext-container
+      left: $grid
+      position: absolute
+      width: ($grid * 6) + ($grid / 2)
+    h1
+      color: White
+      // display: inline
+      font:
+        // size: 3.5vw // Nao resolve o problema! ¬¬ Preciso implementar o FitText (http://fittextjs.com/)
+        weight: normal
+      // left: $grid
+      letter-spacing: -.2rem
+      line-height: .8 // 5rem
+      // position: absolute
+      text-align: right
+      // white-space: nowrap
+      .nomeCurso
+        // font-family: "Ubuntu Regular", sans-serif
+      .nomeCurso,
+      .subnomeCurso
+        display: block
+      .subnomeCurso 
+        color: darken(mix($cinza-escuro, $bege-escuro), 5%)
+        font-size: 2.5vw // Nao resolve o problema! ¬¬ Preciso implementar o FitText (http://fittextjs.com/)
+    .pagelayout-course &
+      background: url([[pix:theme|curso/cabecalho_home_padrao]]) no-repeat top center
+      .fittext-container
+        bottom: 9vw
+        @media (min-width: 1200px)
+          bottom: 6vw
+        @media (min-width: 768px) and (max-width: 979px)
+          bottom: 11vw
+    .pagelayout-incourse &
+      background: url([[pix:theme|curso/cabecalho_padrao]]) no-repeat top center
+      .fittext-container
+        bottom: 3vw
+      h1
+        .subnomeCurso
+          display: block
+  .pagelayout-course.path-course &,
+  .pagelayout-incourse &
+    background:
+      color: transparent
+      size: contain
+  .pagelayout-course.path-course &
+    padding-top: 25.8vw !important
+  .pagelayout-incourse &
+    padding-top: 13.95vw !important
+.pagelayout-course,
+.pagelayout-incourse
+  // #header-content
+  //   min-height: 125px !important // Temporario ateh achar uma solucao melhor
+  #page-header
+    background-size: contain
+    h1
+      float: none
+  [role="main"]
+    p
+      color: $cinza
+      font-size: 1.8rem
+      &:not(.numero-modulo)
+        +line-height(2.8)
+    a
+      color: $verde
+.pagelayout-incourse
+  [role="main"]
+    > h2 + *
+      clear: both
+    h2
+      &,
+      &.modulo
+        color: $cinza-claro
+        margin-bottom: 0
+    h2,
+    h2.modulo,
+    h3.topico
+      float: right
+      font-weight: normal
+      +line-height(2.4)
+      margin-top: 0
+    h2,
+    h2.modulo,
+    h3.topico,
+    h5.intertitulo,
+    h6
+      font-size: 1.8rem
+    h3.topico
+      clear: both
+      margin-bottom: 20px
+    h3.topico,
+    h5.intertitulo
+      color: $alaranjado
+    h4.subtopico
+      border-bottom: 1px dotted $alaranjado
+      clear: right
+      font-size: 3.5rem
+      font:
+        family: $sansation-r
+        weight: normal
+      padding-bottom: 20px
+    h4.subtopico,
+    h6
+      color: $cinza
+
+    // Imagens
+    img
+      max-width: 720px
+    // Listas
+    ul
+      color: $cinza
+      font-size: 1.5rem
+      list-style-image: url([[pix:theme|curso/bullet]]) // list-style-type: square
+      margin: 30px 20px 30px 80px // 20px 30px 50px 100px
+      li
+        +line-height(2.7)
+.course-content
+  .left.side
+    // width: $grid + ($grid / 2) !important // Sobrepoe a mah programacao do Moodle ¬¬
+    width: $grid / 2 !important // Sobrepoe a mah programacao do Moodle ¬¬
+  .content
+    float: left
+    margin: 0 !important // Sobrepoe a mah programacao do Moodle ¬¬
+    width: $grid * 9 + ($grid / 2) !important // Sobrepoe a mah programacao do Moodle ¬¬
+  .section
+    *
+      padding: 0
+    .activity
+      border-bottom: 1px solid Gainsboro
+      a
+        font-size: 1.8rem
+        +line-height(4)
+    .nome-aluno
+      color: $alaranjado
+    .numero-modulo
+      color: $cinza-claro
+      font-size: 1.4vw // font-size: 2rem
+      +line-height(2)
+      &:before
+        border-bottom: 2px solid $alaranjado
+        content: ""
+        float: right
+        height: 1rem // Metade do line-height
+        width: ($grid * 10) // + ($grid / 2) // calc(100% - 120px)
+    .titulo-modulo
+      color: $cinza
+      font:
+        family: $sansation-r
+        size: 3.5rem
+        weight: normal
+    &.main[role="region"]
+      border-bottom: 0
+      margin-bottom: 70px
+      &#section-0
+        .activity
+          border-bottom: 0
+        // .numero-modulo
+        //   display: none
+    &.img-text
+      margin: 0 0 0 ($grid / 1.5)
+      .mod-indent-outer
+        padding-left: 0
+        .mod-indent-2
+          width: 30px

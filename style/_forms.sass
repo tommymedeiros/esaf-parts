@@ -1,0 +1,58 @@
+// Mixin de estilos gerais dos inputs
+=input($br, $vp, $hp)
+  border: 1px solid lighten($cinza-claro, 10%)
+  +border-radius($br)
+  height: 30px
+  margin: 5px 2px !important
+  outline: 0
+  padding: $vp $hp
+  &:hover
+    border-color: $cinza-claro
+
+// Formatacao do input de tipo texto
+%input-text
+  +border-radius(8px)
+  box-shadow: $sombra-input-text
+  +input(8px, 4px, 6px)
+  &:focus
+    box-shadow: $sombra-input-text, 0 0 10px $cinza-claro
+    +placeholder
+      color: lighten(Gainsboro, 3%)
+
+// Formatacao do input de tipo botao
+%input-submit
+  background:
+    color: Gainsboro !important
+    image: linear-gradient(White, Gainsboro) !important
+  +border-radius(10px)
+  box-shadow: $sombra-input-submit
+  color: $cinza !important
+  font-size: 1.1rem
+  +input(10px, 2px, 10px)
+  text:
+    shadow: 1px 1px 0 White !important
+    transform: lowercase
+  &:hover
+    background:
+      color: $cinza
+      image: linear-gradient(Gainsboro, $cinza-claro)
+    color: $cinza-escuro
+
+// Mixins
+input
+  &[type="password"],
+  &[type="text"]
+    @extend %input-text
+input,
+button
+  &[type="submit"]
+    @extend %input-submit
+
+// Formatacao do select
+select
+  option
+    &[selected="selected"]
+      background-color: $bege-claro
+      font-weight: bold
+  &:focus
+    outline: 0

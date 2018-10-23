@@ -1,0 +1,322 @@
+// Coluna lateral que contem os blocos
+[id^="block-region"]
+  &,
+  &[id$="content"] .content
+    background-color: transparent
+  [class^="skip-block"]
+    height: 0
+  [class*="pagelayout"]:not(.notloggedin) &.span3
+    +no-gutter(3)
+    @media (min-width: 768px) and (max-width: 979px)
+      +no-gutter(4)
+.block
+  background-color: transparent
+  border: 0
+  +border-radius(0)
+  box-shadow: none
+  color: $cinza
+  margin-bottom: 0
+  padding: 0
+  .header
+    background-color: $bege
+    .title
+      +clearfix
+    .block_action
+      float: left
+      height: 40px
+      padding: 10px 0 0 15px
+    h2
+      color: $cinza-escuro
+      +ellipsis(60%)
+      float: right
+      font-weight: normal
+      line-height: 4rem
+      margin-right: 40px
+      padding: 0
+      .notloggedin &
+        margin-right: 0
+      @media (min-width: 768px) and (max-width: 979px)
+        +ellipsis(80%)
+        margin-right: 20px
+    .commands
+      // clear: none
+      // float: right
+      img
+        margin: $borda / 2
+        padding: 0
+  .content
+    background-color: $bege-claro
+    margin: 0
+    a
+      color: $cinza
+    .footer
+      margin-bottom: 0
+    .notloggedin &
+      background-color: $bege-escuro
+      max-width: 100%
+  &.block_badges
+    .content
+      +clearfix
+    .badges li
+      float: left
+  // Bloco do calendario
+  &.block_calendar_month
+    .content
+      padding: 0 0 25px 0
+    .calendar-controls
+      background-color: White
+      border:
+        style: solid
+        width: 0 0 1px 0
+      border-bottom-color: $bege
+      border-right-color: $bege-claro
+      margin-bottom: 25px
+      a
+        line-height: 2.5rem
+        width: $grid * 3
+        &.previous
+          text-align: right
+        &.next
+          text-align: left
+    .current
+      width: $grid * 6
+      a
+        color: $verde
+    th,
+    td
+      outline: 1px solid Gainsboro
+    .weekdays
+      background-color: mix(Gainsboro, White)
+      abbr
+        border: 0
+        text-transform: uppercase
+    .day
+      background-color: White
+      &:hover
+        background-color: mix($bege-claro, White)
+      &.weekend
+        background-color: mix($bege-claro, White)
+        color: DarkRed
+    .today a
+      color: Black
+      font-weight: bold
+  // Bloco de login
+  &.block_login
+    .notloggedin &
+      position: relative
+      .content
+        min-height: $main-home
+        padding: 50px 0 0 // ($barras + $header-home + $slider-home) 0 0
+        .loginform
+          @extend %loginform
+          #login_username,
+          #login_password
+            // @extend %input-text
+            width: 100%
+          .recupera-senha
+            float: left
+            margin-left: 5px
+          .rememberusername
+            float: right
+            margin-right: 5px
+          .btn
+            clear: both
+            font-size: 1.1rem
+            // input
+            //   @extend %input-submit
+        .footer a
+          color: $verde
+          font-size: 1.1rem
+          text-transform: uppercase
+      .primeiro-acesso
+        p
+          color: mix($cinza, $cinza-claro)
+          line-height: 2rem
+          margin: 10px 0
+        a
+          color: $verde
+          text-transform: uppercase
+      .tooltip-primeiro-acesso
+        background-color: $bege-claro
+        border: ($borda / 2) solid $alaranjado
+        box-shadow: $sombra-input-submit
+        display: none
+        font-size: 1.3rem
+        left: 5% // Para haver a mesma margem dos dois lados
+        margin-bottom: 20px
+        padding: 5px 10px
+        position: absolute
+        top: 120px // 40px
+        width: 90%
+        z-index: 1
+        a
+          color: $verde
+          // text-transform: uppercase
+        span.tooltip-fechar
+          color: $alaranjado
+          cursor: pointer
+          display: block
+          font-weight: bold
+          line-height: $borda * 2
+          position: absolute
+          right: 0
+          top: 0
+          width: $borda * 2
+        &:before
+          border:
+            color: $alaranjado transparent
+            style: solid
+            width: $borda $borda 0
+          bottom: - $borda - ($borda / 2)
+          content: ""
+          +filter(drop-shadow(2px 2px 0px rgba(0,0,0,.1)))
+          left: 45% // 50% // $borda * 2
+          margin-left: - ($borda * 2)
+          position: absolute
+          z-index: 1
+        &.aberto
+          display: block
+      .header
+        display: none
+  // Bloco com as informacoes do usuario logado
+  &.block_myprofile
+    background:
+      // blend-mode: multiply
+      color: $bege-escuro
+      image: url([[pix:theme|hachura_barra_esaf]]) // url([[pix:theme|bg_login_logado_hachura]])
+      position: 0 150px
+      repeat: repeat-y // no-repeat
+      size: 100%
+    box-shadow: $sombra-extensa
+    margin-bottom: 30px
+    min-height: 330px
+    position: relative
+    &:after
+      bottom: 0
+      content: url([[pix:theme|bg_login_carimbo]])
+      display: block
+      position: absolute
+      +size(100px 120px)
+    .content
+      background-color: transparent
+      .acesso-liberado
+        border-top: 1px solid White // Borda branca
+        box-shadow: 0 -1px 0 0 darken($bege-escuro, 15%) // "Borda" marrom
+        color: mix($bege-escuro, $cinza)
+        font:
+          family: $bpdots-r
+          size: 2.1rem
+        margin: 0 auto
+        padding: 20px 0
+        text:
+          align: center
+          transform: uppercase
+        width: 85%
+      .picture
+        margin: 0 15px 30px 0
+        a
+          background: url([[pix:theme|bg_login_photo]]) no-repeat center top $cinza
+          display: block
+          +size(150px 230px) // (190px 240px)
+          img
+            display: none
+      .fullname
+        color: Black
+        font-size: 1.5rem
+      .profile
+        a
+          color: $verde
+          img
+            display: none
+      .lastaccess
+        font-size: 1.1rem
+        line-height: 1.4rem
+        text-transform: lowercase
+      .button a
+        @extend %input-submit
+        background:
+          color: $cinza-claro !important
+          image: none !important
+        // +border-radius(50%)
+        box-shadow: $sombra-input-submit
+        color: White !important
+        line-height: 2rem
+        padding:
+          bottom: 0
+          top: 0
+        +size(60px 20px)
+        text-shadow: none !important
+        +transition(background-color .25s)
+        &:hover
+          background-color: mix($cinza, $cinza-claro) !important
+          +transition(background-color .25s)
+    body:not(.editing) & .header
+      display: none
+      // background-color: transparent
+      // h2
+      //   display: none
+    .city,
+    .country,
+    .email
+      display: none
+  &.block_navigation
+    .content > ul > li > ul > li > p.leaf > a
+      color: $verde
+  &.block_search_forums
+    #searchform_search
+      float: right
+      // max-width: 94%
+      width: 94%
+    #searchform_button
+      width: 90%
+  &.block_valida_certificado
+    .content
+      +clearfix
+      input[type="text"]
+        // @extend %input-text
+        width: 100% // 180px
+      // input[type="submit"]
+      //   @extend %input-submit
+    .notloggedin &
+      margin-left: $grid
+      min-height: $main-home
+      padding-top: 50px
+      .header
+        .block_action
+          display: none
+        h2
+          background-color: $bege-claro
+          border-left: $borda solid $cinza-claro
+          color: $cinza-claro
+          display: block
+          font:
+            family: $ubuntu-r
+            size: 1.7rem
+            weight: normal
+          float: none
+          max-width: 100%
+          padding-left: 10px
+          text:
+            align: left
+            transform: uppercase
+      .content
+        background-color: transparent
+        padding: 20px 0 0
+  &.block_settings
+    .row-fluid
+      .span9
+        margin-left: 0
+        #adminsearchquery
+          max-width: 100%
+          width: 100%
+  // Define que todos os blocos nao sao exibidos antes do login, exceto os citados abaixo
+  .notloggedin &:not(.block_login):not(.block_barra_esaf):not(.block_valida_certificado)
+    display: none
+  // Define max-width e padding nos .content dos blocos
+  body:not(.notloggedin) &
+    &:not(.block_myprofile)
+      .content
+        max-width: 96% // Deixa o .content menor que o .header nas paginas internas
+    &:not(.block_badges):not(.block_calendar_month):not(.block_myprofile):not(.block_valida_certificado)
+      .content
+        padding-left: 50px
